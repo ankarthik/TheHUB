@@ -1,0 +1,32 @@
+<mb-sub-header title="Relocate or Return Request" backurl="relocate-return"></mb-sub-header>
+<div class="mb-list list-group-item box-shadow-list item">
+    <ul class="list" >
+        <li class="item custom-checkbox" ng-repeat="c in CaseTypes">
+            <label for="orders_{{$index}}">
+                <input type="radio" name="orders" id="orders_{{$index}}" class="align-middle"
+                       ng-model="caseContainer.selectedCase"  ng-value="c"/>
+                {{c.Name}} <span data-ng-if="c.SubCaseTypeName != '' && c.SubCaseTypeName != null  && c.SubCaseTypeName != undefined">- {{c.SubCaseTypeName}}</span>
+            </label>
+        </li>
+    </ul>
+</div>
+<div class="mb-list list-group-item box-shadow-list item ">
+    <p><i>Requested Date</i></p>
+    <label class="item item-input">
+        <i class="icon ion-calendar"></i>
+        <input id="txtRequestedDate" class="custom-date" ng-click="openDatepicker()" onfocus="blur();">
+    </label>
+</div>
+<div class="mb-list list-group-item box-shadow-list item" data-tap-disabled="true">
+    <p><i>Comments</i></p>
+    <textarea class="custom-textarea" id="txtComments"></textarea>
+</div>
+<div class="row">
+    <div class="col text-center"><button class="button button-block button-calm text-capitalize outbound-section-button"
+                                         ng-click="submitRequest()">Submit</button></div>
+    <div class="col text-center">
+        <a href="#/relocate-return" class="no-text-decoration">
+            <button class="button button-block button-stable text-capitalize outbound-section-button">Cancel</button>
+        </a>
+    </div>
+</div>

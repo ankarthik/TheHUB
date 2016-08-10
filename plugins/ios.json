@@ -1,0 +1,59 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "com.salesforce": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "com.synconset.imagepicker": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "cordova-plugin-actionsheet": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "cordova-plugin-datepicker": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "org.apache.cordova.device": {
+            "PACKAGE_NAME": "com.thehub.app"
+        },
+        "com.exacttarget.etpushsdk": {
+            "DEVAPPID": "2fd514af-8aed-47b9-a78a-13002a992704",
+            "DEVACCESSTOKEN": "ybwgvcm8xr984ppp5yjd4zd3",
+            "PRODAPPID": "2fd514af-8aed-47b9-a78a-13002a992704",
+            "PRODACCESSTOKEN": "ybwgvcm8xr984ppp5yjd4zd3",
+            "GCMSENDERIDDEV": "123456",
+            "GCMSENDERIDPROD": "123456",
+            "USEGEO": "true",
+            "USEANALYTICS": "true",
+            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+        }
+    },
+    "dependent_plugins": {}
+}

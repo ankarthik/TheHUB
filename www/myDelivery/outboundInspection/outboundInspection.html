@@ -1,0 +1,75 @@
+<mb-sub-header title="Inspection Checklist" backurl="my-delivery"></mb-sub-header>
+<section class="view-section">
+    <div data-ng-if="checkList.length"
+         ng-repeat="d in checkList" class="mb-list list-group-item box-shadow-list item">
+        <div ng-click="toggleGroup(d)"
+             ng-class="{active: isGroupShown(d)}">
+            <div class="row mb-list-title">
+                <div class="col col-90 text-capitalize">
+                    <p class="">{{d.CheckListCategory}}</p>
+                </div>
+                <div class="col col-10 col-center">
+                    <i class="icon" ng-class="isGroupShown(d) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                </div>
+            </div>
+        </div>
+        <div class="item-accordion"
+             ng-show="isGroupShown(d)">
+            <div class="delivery-accordian-body">
+                <div class="row inspection-list" data-ng-repeat="e in d.CheckListItem">
+                    <div class="col col-75 text-capitalize">{{e.CheckListItem}}&nbsp;</div>
+                    <div class="col col-25 col-center text-capitalize"><span class="text-capitalize">{{e.CheckListValue}}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-ng-if="checkList.length"
+         class="mb-list list-group-item box-shadow-list item">
+        <div class="row">
+            <div class="col col-100">Comments</div>
+        </div>
+        <div class="row">
+            <div class="col col-100">
+            <textarea id="txtComment" placeholder="Enter comments here..."
+                      style="border: 1px solid #ddd; width: 100%; height: 80px;"
+                                                                 aria-controls="false"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="mb-list list-group-item box-shadow-list item user-signature hide">
+        <div class="row">
+            <div class="col col-100 legal-acceptance">
+                <label>
+                    <input type="checkbox" id="chkLegalAcceptance" ng-model="chkLegalAcceptance"
+                           ng-true-value="true" ng-false-value="false"> I agree as follows:
+                </label>
+                <p>As indicated by the printed name below, the Customer has inspected the identified asset and accepts it in the stated condition unless otherwise noted in the comments.  Customer's acceptance is subject to the terms and conditions previously agreed to by the parties. </p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-100">Customer Name</div>
+        </div>
+        <div class="row">
+            <div class="col col-100">
+                <input type="text" id="txtSignature" placeholder="Enter your name" style="border: 1px solid #ddd; width: 100%;">
+            </div>
+        </div>
+    </div>
+    <div data-ng-if="checkList.length"
+         class="row outbound-section">
+        <div class="col">
+            <button id="btnSubmit"
+                    class="button button-block button-calm text-capitalize outbound-section-button"
+                    ng-click="submitSignature()">
+                Submit
+            </button>
+        </div>
+    </div>
+
+    <div id="div_noRecords" class="row hide">
+        <div class="col text-center">
+            <h4>Sorry, No record(s) found!</h4>
+        </div>
+    </div>
+</section>

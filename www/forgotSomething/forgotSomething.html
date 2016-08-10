@@ -1,0 +1,48 @@
+<mb-sub-header title="Forgot Something" backurl="home"></mb-sub-header>
+<section class="view-section">
+    <div ng-repeat="d in deliveries" class="mb-list list-group-item box-shadow-list item"
+         ng-class="{'margin-bottom-40': $last}"
+         data-ng-if="d.CaseId !== -1">
+        <div ng-click="toggleGroup(d)"
+             ng-class="{active: isGroupShown(d)}"
+             mixular="click"
+             eventLabel="{{forgotsomethingdetails}}">
+            <div class="row mb-list-title">
+                <div class="col-90">
+                    <label>Unit: {{d.UnitNo}}</label>
+                    <span class="text-capitalize">{{d.DeliveryCity}}, {{d.DeliveryState}}</span>
+                    <span class="text-capitalize">Contract: {{d.LeaseNo}}</span>
+                </div>
+                <div class="col-10 col-center">
+                    <i class="icon" ng-class="isGroupShown(d) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="item-accordion" ng-show="isGroupShown(d)">
+            <div class="delivery-accordian-body text-capitalize">
+                <div class="col col-100">
+                    <p><i>What do you want to add in this order?</i></p>
+                </div>
+                <div class="col col-100">
+                    <ion-checkbox ng-repeat="item in d.ItemsToAdd" ng-model="item.IsChecked" ng-checked="item.checked" name="chk_{{d.UnitNo}}">
+                        {{item.Name}}
+                    </ion-checkbox>
+                </div>
+                <div class="row outbound-section">
+                    <div class="col">
+                        <button class="button button-block button-calm text-capitalize outbound-section-button"
+                                ng-click="submitRequest(d.UnitNo, d.LeaseNo)">
+                            Request Addition
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="div_noRecords" class="row hide">
+        <div class="col text-center">
+            <h4>Sorry, your building has already been delivered. If you would like to add an item to an active contract, click on the menu icon at the top of The Hub to contact customer service.</h4>
+        </div>
+    </div>
+</section>

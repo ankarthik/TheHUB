@@ -1,0 +1,20 @@
+<mb-sub-header title="New Help Request" backurl="need-help"></mb-sub-header>
+<section class="view-section">
+    <div class="mb-list list-group-item box-shadow-list item"
+         data-ng-repeat="c in CaseTypes | unique: 'TypeId'"
+         data-tap-disabled="true">
+        <a href="#/service-request-form/{{unitNo}}?serviceId={{c.TypeId}}">
+            <div>
+                <div class="row mb-list-title">
+                    <div class="col-90">
+                        <label>{{c.Name}}: </label>
+                        <span class="">{{c.UIDescription}}</span>
+                    </div>
+                    <div class="col-10 col-center">
+                        <i class="icon ion-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>

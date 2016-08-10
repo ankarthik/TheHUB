@@ -1,0 +1,30 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.mw.magic_board"
+        },
+        "com.exacttarget.etpushsdk": {
+            "DEVAPPID": "2fd514af-8aed-47b9-a78a-13002a992704",
+            "DEVACCESSTOKEN": "ybwgvcm8xr984ppp5yjd4zd3",
+            "PRODAPPID": "2fd514af-8aed-47b9-a78a-13002a992704",
+            "PRODACCESSTOKEN": "ybwgvcm8xr984ppp5yjd4zd3",
+            "GCMSENDERIDDEV": "123456",
+            "GCMSENDERIDPROD": "123456",
+            "USEGEO": "true",
+            "USEANALYTICS": "true",
+            "PACKAGE_NAME": "com.mw.magic_board"
+        }
+    },
+    "dependent_plugins": {
+        "org.apache.cordova.device": {
+            "PACKAGE_NAME": "com.mw.magic_board"
+        }
+    }
+}

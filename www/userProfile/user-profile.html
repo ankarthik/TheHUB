@@ -1,0 +1,34 @@
+<mb-sub-header title="My Profile" backurl="home"></mb-sub-header>
+<div class="mb-list list-group-item box-shadow-list item" data-ng-repeat="userInfo in userInfo" ng-if="userInfo">
+    <div class="row">
+        <div class="col">
+            <p class="text-uppercase text-center">
+            User Name:
+            <span data-ng-if="userInfo.Name"> {{userInfo.Name}} {{userInfo.LastName}}</span>
+            <span data-ng-if="!userInfo.Name"> -</span>
+            </p>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            E-Mail Id:
+            <span data-ng-if="userInfo.Email"> {{userInfo.Email}}</span>
+            <span data-ng-if="!userInfo.Email"> -</span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            Location:
+            <span data-ng-if="userInfo.Address.city && userInfo.Address.state"> {{userInfo.Address.city}}, ({{userInfo.Address.state}})</span>
+            <span data-ng-if="!userInfo.Address.city || !userInfo.Address.state"> -</span>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div class="col">
+            Contact:
+            <span data-ng-if="userInfo.Phone"> +{{userInfo.Phone}}</span>
+            <span data-ng-if="!+userInfo.Phone"> -</span>
+        </div>
+    </div>
+</div>
+

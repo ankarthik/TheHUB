@@ -1,0 +1,15 @@
+<mb-sub-header title="Rate Us" backurl="home"></mb-sub-header>
+<section class="view-section">
+    <div ng-repeat="r in rateUsList"
+         class="mb-list list-group-item box-shadow-list item"
+         data-ng-click="pageRedirect(r)"
+         mixular="click"  eventLabel="{{takesurvey}}">
+        <p>{{r.RateUsTypeName__c}}</p>
+        <p>Requested On: <span data-ng-bind="getFormattedDate(r.RequestedOn__c)"></span></p>
+    </div>
+    <div id="div_noRecords" class="row hide">
+        <div class="col text-center">
+            <h4>Sorry, No record found!</h4>
+        </div>
+    </div>
+</section>

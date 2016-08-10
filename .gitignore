@@ -1,0 +1,17 @@
+.DS_Store
+platforms/android
+platforms/ios
+platforms/.DS_Store
+plugins/com.exacttarget.etpushsdk
+plugins/com.phonegap.plugins.PushPlugin
+plugins/com.salesforce
+plugins/com.synconset.imagepicker
+plugins/cordova-plugin-actionsheet
+plugins/cordova-plugin-datepicker
+plugins/cordova-plugin-inappbrowser
+plugins/cordova-plugin-network-information
+plugins/cordova-plugin-statusbar
+plugins/cordova-plugin-whitelist
+plugins/cordova-plugin-x-toast
+plugins/org.apache.cordova.camera
+plugins/org.apache.cordova.device

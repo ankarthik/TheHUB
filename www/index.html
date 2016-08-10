@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html data-ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome-4.4.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto%3A400%2C300%2C500%2C700%2C900" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open%20Sans%20Condensed%3A300%2C700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Open%20Sans%3A400%2C800%2C700italic%2C700%2C600italic%2C600%2C400italic%2C300italic%2C300" rel="stylesheet" type="text/css">
+
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="lib/ionic/css/ionic.min.css">
+    <!-- /CSS Libraries -->
+
+    <!-- custom stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/jquery.js"></script>
+    <script src="lib/bootstrap-js/bootstrap.min.js"></script>
+    <script src="js/forcetk.mobilesdk.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- JS Libraries -->
+    <script src="js/jquery.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/moment/moment.min.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="lib/angular-touch/angular-touch.js"></script>
+    <script src="cordova.js"></script>
+    <script src="angular-ios9-uiwebview.patch.js"></script>
+    <script src="lib/angular-filter/angular-filter.min.js"></script>
+    <script src="lib/jSignature/jSignature.min.js"></script>
+    <!--<script src="lib/ionic/js/tap.js"></script>-->
+    <!-- /JS Libraries -->
+
+    <!-- start Mixpanel -->
+    <script type="text/javascript">
+        (function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+            for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f)}})(document,window.mixpanel||[]);
+        mixpanel.init("aaf6586238946e83ffb77d2a9ec87175");
+    </script>
+    <!-- end Mixpanel -->
+</head>
+
+<!-- define angular controller -->
+<body ng-controller="IndexCtrl" ng-swipe-left="menuShow()" ng-swipe-right="menuHide()">
+<nav class="navbar navbar-default navbar-fixed-top mb-header-nav">
+    <div class="container">
+        <div class="row row-no-padding">
+            <div class="navbar-header col col-33">
+                <a class="navbar-brand" href="#/home">The Hub Home</a>
+            </div>
+            <div class="col col-66">
+                <ul class="nav navbar-nav navbar-right">
+                    <li mixular="click"  eventLabel="{{notifications}}">
+                        <a href="#/notifications">
+                            <i class="ion-android-notifications custom-icon"></i>
+                            <span class="notification-label header" data-ng-if="count > 0">{{count}}</span>
+                        </a>
+                    </li>
+                    <li mixular="click"  eventLabel="{{profile}}">
+                        <a href="#/user-profile">
+                            <i class="ion-person custom-icon"></i>
+                        </a>
+                    </li>
+                    <li ng-click="menuToggle()">
+                        <i class="ion-navicon-round custom-icon"></i>
+                    </li>
+                </ul>
+                <div class="menu">
+                    <ul class="list">
+                        <li class="item" mixular="click"  eventLabel="{{hubhelp}}"><a onclick="window.open('https://www.modspace.com/en/resources/the-hub', '_system', 'location=yes');"><i class="ion-link custom-icon"></i>Hub Help</a></li>
+                        <li class="item" mixular="click"  eventLabel="{{faq}}"><a onclick="window.open('http://www.modspace.com/resources/faqs/', '_system', 'location=yes');"><i class="ion-link custom-icon"></i>ModSpace FAQ’s</a></li>
+                        <li class="item" ng-click="dialNumber(ModspaceNumber)"><a><i class="ion-android-call custom-icon"></i>Contact Us</a></li>
+                        <li class="item" mixular="click"  eventLabel="{{modspacewebsite}}"><a onclick="window.open('http://www.modspace.com', '_system', 'location=yes');"><i class="ion-link custom-icon"></i>Go to modspace.com</a></li>
+                        <li class="item" ng-click="logout()"><a><i class="ion-power custom-icon"></i>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <!-- angular templating -->
+    <!-- this is where content will be injected -->
+    <div class="view" ui-view=""></div>
+</div>
+
+<!-- inject:js -->
+<script src="script.js"></script>
+<!-- home -->
+
+
+
+<script src="home/home.module.js"></script>
+<script src="home/home.route.js"></script>
+<script src="home/home.controller.js"></script>
+
+<!--error module-->
+<!--<script src="error/error.module.js"></script>-->
+<!--<script src="error/error.route.js"></script>-->
+<!--<script src="error/error.controller.js"></script>-->
+
+<!--Equipment module-->
+<script src="equipments/equipments.module.js"></script>
+<script src="equipments/equipments.route.js"></script>
+<script src="equipments/equipments.controller.js"></script>
+
+
+<!--Forgot Something module-->
+<script src="forgotSomething/forgotSomething.module.js"></script>
+<script src="forgotSomething/forgotSomething.route.js"></script>
+<script src="forgotSomething/forgotSomething.controller.js"></script>
+
+
+<!--My Delivery Module-->
+<script src="myDelivery/myDelivery.module.js"></script>
+<script src="myDelivery/myDelivery.route.js"></script>
+<script src="myDelivery/myDelivery.controller.js"></script>
+
+<!--Outbound Inspection Module-->
+<script src="myDelivery/outboundInspection/outboundInspection.module.js"></script>
+<script src="myDelivery/outboundInspection/outboundInspection.route.js"></script>
+<script src="myDelivery/outboundInspection/outboundInspection.controller.js"></script>
+
+<!--Need Help Module-->
+<script src="needHelp/needHelp.module.js"></script>
+<script src="needHelp/needHelp.route.js"></script>
+<script src="needHelp/needHelp.controller.js"></script>
+<script src="needHelp/create-new-service.controller.js"></script>
+<script src="needHelp/service-request-form.controller.js"></script>
+
+<!--Relocate Return Module-->
+<script src="relocateReturn/relocateReturn.module.js"></script>
+<script src="relocateReturn/relocateReturn.route.js"></script>
+<script src="relocateReturn/relocateReturn.controller.js"></script>
+<script src="relocateReturn/create-relocate-return-request.controller.js"></script>
+
+<!--Rate Us Module-->
+<script src="rateUs/rate-us.module.js"></script>
+<script src="rateUs/rate-us.route.js"></script>
+<script src="rateUs/rate-us.controller.js"></script>
+
+<!--User Profile Module-->
+<script src="userProfile/user-profile.module.js"></script>
+<script src="userProfile/user-profile.route.js"></script>
+<script src="userProfile/user-profile.controller.js"></script>
+<script src="userProfile/storage.service.js"></script>
+
+<!--Notificatons Module-->
+<script src="notifications/notifications.module.js"></script>
+<script src="notifications/notifications.route.js"></script>
+<script src="notifications/notifications.controller.js"></script>
+
+<!--Widget Module-->
+
+<script src="widgets/widget.module.js"></script>
+<script src="widgets/angular-mixular-directive.js"></script>
+<script src="widgets/mb-sub-header.directive.js"></script>
+<script src="widgets/slideable.directive.js"></script>
+
+
+<!-- Core Module -->
+<script src="core/core.module.js"></script>
+<script src="core/dataservice.js"></script>
+<script src="core/case-types.service.js"></script>
+<script src="core/delivery.service.js"></script>
+<script src="core/utility.service.js"></script>
+<script src="core/config.js"></script>
+<script src="core/mixpanel-config.js"></script>
+<script src="core/image-service.js"></script>
+<script src="core/datepicker.service.js"></script>
+
+
+<script src="index.controller.js"></script>
+<!--footer module-->
+
+
+<!-- end inject:js -->
+</body>
+</html>

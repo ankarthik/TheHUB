@@ -1,0 +1,70 @@
+<mb-sub-header title="Need Service" backurl="home"></mb-sub-header>
+<section class="view-section">
+    <div ng-repeat="e in equipments"
+         class="mb-list list-group-item box-shadow-list item"
+         ng-class="e.ContractState !== 'Complete Activated' ? 'background-blue' : ''">
+        <div ng-click="toggleGroup(e)"
+             ng-class="{active: isGroupShown(e)}"
+             mixular="click"
+             eventLabel="{{needhelpdetails}}">
+
+            <div class="row mb-list-title" ng-class="e.ContractState !== 'Complete Activated' ? 'background-blue' : ''">
+                <div class="col-90">
+                    <label>Unit: {{e.UnitNo}}</label>
+                    <span class="text-capitalize">{{e.DeliveryCity}}, {{e.DeliveryState}}</span>
+                    <span class="text-capitalize">Contract: {{e.LeaseNo}}</span>
+                </div>
+                <div class="col-10 col-center">
+                    <i class="icon" ng-class="isGroupShown(e) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="item-accordion"
+             ng-show="isGroupShown(e)">
+            <a class="button button-block button-calm text-capitalize outbound-section-button no-text-decoration"
+               href="#/create-new-service/{{e.UnitNo}}"
+               mixular="click"  eventLabel="{{newservicerequest}}">
+                Create New
+            </a>
+            <div ng-repeat="c in e.Cases | orderBy: c.CaseId | reverse"
+                 class="delivery-accordian-body text-capitalize"
+                 data-ng-if="!(c.CaseId === -1)">
+                <div class="row bordered-div">
+                    <div class="col col-33">Case#: {{c.CaseId}}</div>
+                    <div class="col col-66 mb-list-divider">
+                        <p class="pull-left full-width-text-overflow">{{c.CaseType}} <span data-ng-if="c.CaseSubType !== '' || c.CaseSubType === null || c.CaseSubType === undefined">- {{c.CaseSubType}}</span></p>
+                        <!--<a data-ng-if="c.SalesPersonPhone"
+                           ng-click="dialNumber(c.SalesPersonPhone)"
+                           class="button-icon pull-right"
+                           mixular="click"  eventLabel="{{dialfromdetails}}">
+                            <i class="ion-android-call"></i>
+                        </a>-->
+                    </div>
+                </div>
+                <div class="row date-workflow">
+                    <div class="col-33">
+                        Requested <br>
+                        <img src="img/workflow_icons/{{isValidDate(c.RequestedDate) ? 'green_mailcheck_icon.png' : 'gray_mailcheck_icon.png'}}"/>
+                        <p ng-bind="getFormattedDate(c.RequestedDate)"></p>
+                    </div>
+                    <div class="col-33">
+                        Committed <br>
+                        <img src="img/workflow_icons/{{isValidDate(c.CommittedDate) ? 'green_trans_icon.png' : 'gray_trans_icon.png'}}"/>
+                        <p ng-bind="getFormattedDate(c.CommittedDate)"></p>
+                    </div>
+                    <div class="col-33">
+                        Complete <br>
+                        <img src="img/workflow_icons/{{isValidDate(c.CompletedDate) ? 'green_delivered_icon.png' : 'gray_delivered_icon.png'}}"/>
+                        <p ng-bind="getFormattedDate(c.CompletedDate)"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="div_noRecords" class="row hide">
+        <div class="col text-center">
+            <h4>Sorry, No record found!</h4>
+        </div>
+    </div>
+</section>

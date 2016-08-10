@@ -1,0 +1,79 @@
+<mb-sub-header title="My Delivery" backurl="home"></mb-sub-header>
+<section class="view-section">
+    <div ng-repeat="d in deliveries" class="mb-list list-group-item box-shadow-list item"
+         ng-class="{'margin-bottom-40': $last}"
+         data-ng-if="d.CaseId !== -1">
+        <div ng-click="toggleGroup(d)"
+             ng-class="{active: isGroupShown(d)}"
+             mixular="click"
+             eventLabel="{{deliverydetails}}">
+            <div class="row mb-list-title">
+                <div class="col-90">
+                    <label>Unit: {{d.UnitNo}}</label>
+                    <span class="text-capitalize">{{d.DeliveryCity}}, {{d.DeliveryState}}</span>
+                    <span class="text-capitalize">Contract: {{d.LeaseNo}}</span>
+                </div>
+                <div class="col-10 col-center">
+                    <i class="icon" ng-class="isGroupShown(d) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                </div>
+            </div>
+        </div>
+        <div class="item-accordion" ng-show="isGroupShown(d)">
+            <div class="delivery-accordian-body text-capitalize">
+                <div class="row bordered-div">
+                    <div class="col col-33">Case#: {{d.CaseId}}</div>
+                    <div class="col col-66 mb-list-divider">
+                        <span style="float: left">{{d.CaseType}}</span>
+                        <!--<a data-ng-if="d.SalesPersonPhone"
+                           ng-click="dialNumber(d.SalesPersonPhone)"
+                           class="button-icon pull-right"
+                           mixular="click"  eventLabel="{{dialfromdetails}}">
+                            <i class="ion-android-call"></i>
+                        </a>-->
+                    </div>
+                </div>
+                <div class="row date-workflow">
+                    <div class="col-25">
+                        Requested <br>
+                        <img src="img/workflow_icons/{{isValidDate(d.RequestedDate) ? 'green_mailcheck_icon.png' : 'gray_mailcheck_icon.png'}}"/>
+                        <p ng-bind="getFormattedDate(d.RequestedDate)"></p>
+                    </div>
+                    <div class="col-25">
+                        Committed <br>
+                        <img src="img/workflow_icons/{{isValidDate(d.CommittedDate) ? 'green_trans_icon.png' : 'gray_trans_icon.png'}}"/>
+                        <p ng-bind="getFormattedDate(d.CommittedDate)"></p>
+                    </div>
+                    <div class="col-25">
+                        ETA <br>
+                        <img src="img/workflow_icons/{{isValidDate(d.CommittedDate) ? 'green_load_icon.png' : 'gray_load_icon.png'}}"/>
+                        <p><span ng-bind="getFormattedDate(d.CommittedDate)"></span><spn> {{d.CommittedTime}}</spn></p>
+                    </div>
+                    <div class="col-25">
+                        Closed <br>
+                        <img src="img/workflow_icons/{{isValidDate(d.CompletedDate) ? 'green_delivered_icon.png' : 'gray_delivered_icon.png'}}"/>
+                        <p ng-bind="getFormattedDate(d.CompletedDate)"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row outbound-section">
+                <p class="text-capitalize" data-ng-if="!isValidDate(d.CompletedDate) && d.InspectionId != -1">Already received this item?</p>
+            </div>
+            <!--<div class="row outbound-section" data-ng-if="d.InspectionId">-->
+            <div class="row outbound-section" data-ng-if="isOBInspectionEnable(d.CompletedDate) && (d.InspectionId != -1)"
+                 mixular="click"  eventLabel="{{reviewinspectionchecklist}}">
+                <div class="col">
+                    <a href="#/outbound-inspection/{{d.InspectionId}}"
+                       class="button button-block button-calm text-capitalize outbound-section-button">
+                        Review Inspection Checklist
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="div_noRecords" class="row hide">
+        <div class="col text-center">
+            <h4>Sorry, No record found!</h4>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,94 @@
+<mb-sub-header title="My Equipment" backurl="home"></mb-sub-header>
+<section class="view-section">
+    <div data-ng-repeat="e in equipments"
+         class="mb-list list-group-item box-shadow-list item"
+         ng-class="{'margin-bottom-40': $last}">
+        <div ng-click="toggleGroup(e)"
+             ng-class="{active: isGroupShown(e)}"
+             mixular="click"
+             eventLabel="{{equipmentdetails}}">
+
+            <div class="row mb-list-title">
+                <div class="col col-90">
+                    <label>Unit: {{e.UnitNo}}</label>
+                    <span class="text-capitalize">{{e.DeliveryCity}}, {{e.DeliveryState}}</span>
+                    <span class="text-capitalize">Contract: {{e.LeaseNo}}</span>
+                </div>
+                <div class="col col-10 col-center">
+                    <i class="icon" ng-class="isGroupShown(e) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="item-accordion"
+             ng-show="isGroupShown(e)">
+
+            <div class="delivery-accordian-body text-capitalize">
+                <div class="list card">
+                    <div class="item">
+                        <p class="label-card">Size (width x length)</p>
+                        <span data-ng-if="e.Width || e.Length">{{e.Width}} x {{e.Length}}</span>
+                        <span data-ng-if="e.Width == null && e.Length == null">-</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">Workspace (sq. ft.)</p>
+                        <span data-ng-if="e.OverallArea">{{e.OverallArea}}</span>
+                        <span data-ng-if="e.OverallArea == null">-</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">Restroom(s) / Office(s)</p>
+                        <span data-ng-if="e.Restrooms">{{e.Restrooms.substr(0,e.Restrooms.indexOf(' '))}}</span>
+                        <span data-ng-if="!e.Restrooms">-</span>
+                        <span data-ng-if="e.Offices">/ {{e.Offices.substr(0,e.Offices.indexOf(' '))}}</span>
+                        <span data-ng-if="!e.Offices">/ -</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">Built-in furniture</p>
+                        <span data-ng-if="e.BuiltInFurniture"><i class="ion-checkmark-circled" style="color:green;"></i></span>
+                        <span data-ng-if="e.BuiltInFurniture == null || e.BuiltInFurniture == false">-</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">Electrical Panel</p>
+                        <span data-ng-if="e.ElectricalPanel">{{e.ElectricalPanel}}</span>
+                        <span data-ng-if="e.ElectricalPanel == null">-</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">Electrical Wiring</p>
+                        <span data-ng-if="e.ElectricalWiring">{{e.ElectricalWiring}}</span>
+                        <span data-ng-if="e.ElectricalWiring == null">-</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">AC Rating</p>
+                        <span data-ng-if="e.AC_Rating">{{e.AC_Rating}}</span>
+                        <span data-ng-if="e.AC_Rating == null">-</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">Exterior</p>
+                        <span data-ng-if="e.Exterior">{{e.Exterior}}</span>
+                        <span data-ng-if="e.Exterior == null">-</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">Interior</p>
+                        <span data-ng-if="e.Interior">{{e.Interior}}</span>
+                        <span data-ng-if="e.Interior == null">-</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">Floor Covering</p>
+                        <span data-ng-if="e.FloorCovering">{{e.FloorCovering}}</span>
+                        <span data-ng-if="e.FloorCovering == null">-</span>
+                    </div>
+                    <div class="item">
+                        <p class="label-card">Roof</p>
+                        <span data-ng-if="e.Roof">{{e.Roof}}</span>
+                        <span data-ng-if="e.Roof == null">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="div_noRecords" class="row hide">
+        <div class="col text-center">
+            <h4>Sorry, No record found!</h4>
+        </div>
+    </div>
+</section>
